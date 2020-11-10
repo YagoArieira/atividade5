@@ -47,7 +47,7 @@ def timerCallBack(event):
     D = (error - old_error)*kd
 
     PID = P + I + D
-    error = old_error
+    old_error = error
     msg = Twist()
     msg.linear.x = PID
     pub.publish(msg)
