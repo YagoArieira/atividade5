@@ -5,13 +5,14 @@ from sensor_msgs.msg import LaserScan
 import tf
 import math
 
-rospy.init_node('cmd_node')
+
 
 kp = 1
 ki = 2
 kd = 3
 I0 = 0
 
+rospy.init_node('cmd_node')
 
 odom = Odometry()
 scan = LaserScan()
