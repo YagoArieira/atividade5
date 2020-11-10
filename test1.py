@@ -10,7 +10,7 @@ rospy.init_node('cmd_node')
 kp = 1
 ki = 2
 kd = 3
-I0 0
+I0 = 0
 
 
 odom = Odometry()
