@@ -6,17 +6,12 @@ import tf
 import math
 
 
-
 kp = 1
-ki = 2
-kd = 3
-I0 = 0
-
-rospy.init_node('cmd_node')
 
 odom = Odometry()
 scan = LaserScan()
 
+rospy.init_node('cmd_node')
 
 # Auxiliar functions ------------------------------------------------
 def getAngle(msg):
@@ -38,7 +33,7 @@ def scanCallBack(msg):
 
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
-    
+    """
     yaw = getAngle(odom)
     setpoint = -45
     error = (setpoint - yaw)
@@ -48,13 +43,13 @@ def timerCallBack(event):
             error += 360 
         else:
             error -= 360
-    
-    
+    """
+    """
     setpoint = (-1,-1)
     position = odom.pose.pose.position
     dist = setpoint[0] - position.x #math.sqrt((setpoint[0] - position.x)**2 + (setpoint[1] - position.y) **2)
     error = dist
-    
+    """
     
     setpoint = 0.5
     
@@ -65,13 +60,9 @@ def timerCallBack(event):
         error = -(setpoint - read)
         
         P = kp*error
-        I = I0 + error * ki
-        D = (error - old_error)*kd
-        #I = 0
-        #D = 0
+        I = 0
+        D = 0
         control = P+I+D
-        old_error = error
-        I0 = I
         if control > 1:
             control = 1
         elif control < -1:
